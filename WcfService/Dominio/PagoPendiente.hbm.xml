@@ -10,7 +10,6 @@
     <property name="ds_pago" column="ds_pago" />
     <property name="qt_monto" column="qt_monto" />
     <property name="dt_fecha" column="dt_fecha" />
-    <property name="ds_estado" column="ds_estado" />
     <property name="cd_alumno" column="cd_alumno" />
   </class>
 </hibernate-mapping>
