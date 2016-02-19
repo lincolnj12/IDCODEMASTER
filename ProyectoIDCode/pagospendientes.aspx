@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pagos.aspx.cs" Inherits="ProyectoIDCode.pagos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pagospendientes.aspx.cs" Inherits="ProyectoIDCode.pagos" %>
 
 <!DOCTYPE html>
 
@@ -7,12 +7,12 @@
     <title></title>
 </head>
 <body>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet"/>
+    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet"/>
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
     <form id="form1" runat="server">
 <div id="wrapper">
 
@@ -73,11 +73,11 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    <img alt="image" class="img-circle" src="img/a7.jpg"/>
                                 </a>
                                 <div class="media-body">
                                     <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br/>
                                     <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
                                 </div>
                             </div>
@@ -86,11 +86,11 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                    <img alt="image" class="img-circle" src="img/a4.jpg"/>
                                 </a>
                                 <div class="media-body ">
                                     <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br/>
                                     <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
                                 </div>
                             </div>
@@ -99,11 +99,11 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg"/>
                                 </a>
                                 <div class="media-body ">
                                     <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br/>
                                     <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                         </h2>
                             <small>1° de Primaria</small>
                         </div>
-                        <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                        <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"/>
                         <div>
                             <span>Pomedio Global: 17</span>
                         </div>
@@ -223,7 +223,7 @@
                 <div class="col-lg-8">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Libros pendientes</h5>
+                            <h5>Pagos pendientes</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
