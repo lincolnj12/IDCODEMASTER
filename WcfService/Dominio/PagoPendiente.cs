@@ -8,7 +8,7 @@ namespace WcfService.Dominio
 {
 
      [DataContract]
-    public class Pago
+    public class PagoPendiente
     {
          [DataMember]
          public int cd_pago { get; set; }
@@ -20,10 +20,7 @@ namespace WcfService.Dominio
          [DataMember]
         public string ds_pago { get; set; }
 
-         [DataMember]
-         public string ds_estado { get; set; }
-
-
+        
          [DataMember]
         public double qt_monto { get; set; }
          [DataMember]
