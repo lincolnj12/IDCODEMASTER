@@ -22,6 +22,7 @@ namespace WcfService.Dominio
          [DataMember]
          public string ds_estado { get; set; }
 
+
          [DataMember]
         public double qt_monto { get; set; }
          [DataMember]
