@@ -13,6 +13,7 @@ namespace WcfService.Dominio
          [DataMember]
          public int cd_pago { get; set; }
 
+
          [DataMember]
          public string cd_alumno { get; set; }
 
