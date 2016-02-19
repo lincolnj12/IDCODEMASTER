@@ -244,7 +244,7 @@
                         </div>
                         <div class="ibox-content">
 
-                            <asp:GridView ID="datos" runat="server" class="table table-hover">
+                            <asp:GridView ID="datos" runat="server" class="table table-hover" OnSelectedIndexChanged="datos_SelectedIndexChanged">
 
                             </asp:GridView>
                             <asp:Label ID="lblmensaje" runat="server" Text=""></asp:Label>

@@ -69,5 +69,10 @@ HttpWebRequest req1 = (HttpWebRequest)WebRequest
             datos.DataBind();
 
         }
+
+        protected void datos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
