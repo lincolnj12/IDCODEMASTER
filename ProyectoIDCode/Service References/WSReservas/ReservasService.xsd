@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WcfService.Dominio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfService.Dominio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4920/ReservasService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ReservaMatricula">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaReserva" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Monto" type="xs:double" />
+      <xs:element minOccurs="0" name="cd_alumno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fg_estado" type="ser:char" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReservaMatricula" nillable="true" type="tns:ReservaMatricula" />
+</xs:schema>

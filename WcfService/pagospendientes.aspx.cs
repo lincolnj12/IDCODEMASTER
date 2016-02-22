@@ -18,11 +18,11 @@ namespace ProyectoIDCode
         protected void Page_Load(object sender, EventArgs e)
         {
             StreamReader reader1=null;
-            List<LibroPendiente> librosObtenidos = new List<LibroPendiente>();
+            List<PagoPendiente> pagosRealizados = new List<PagoPendiente>();
             try
             {
 HttpWebRequest req1 = (HttpWebRequest)WebRequest
-    .Create("http://localhost:4920/LibrosService.svc/LibrosPendientes/" + Session["cod_alumno"]);
+    .Create("http://localhost:4920/PagosService.svc/PagosPendientes/" + Session["cod_alumno"]);
             req1.Method = "GET";
             HttpWebResponse res1 = null;
 
@@ -31,7 +31,7 @@ HttpWebRequest req1 = (HttpWebRequest)WebRequest
             reader1 = new StreamReader(res1.GetResponseStream());
             string alumnosJson1 = reader1.ReadToEnd();
             JavaScriptSerializer js1 = new JavaScriptSerializer();
-            librosObtenidos = js1.Deserialize<List<LibroPendiente>>(alumnosJson1);
+            pagosRealizados = js1.Deserialize<List<PagoPendiente>>(alumnosJson1);
             }
             catch (WebException be)
             {
@@ -48,26 +48,30 @@ HttpWebRequest req1 = (HttpWebRequest)WebRequest
             
 
             DataTable tb = new DataTable();
-           tb.Columns.Add("Libro");
-            tb.Columns.Add("Autor");
-            tb.Columns.Add("Fecha de Préstamo");
-            tb.Columns.Add("Fecha de Devolución");
+            tb.Columns.Add("Codigo");
+            tb.Columns.Add("Descripcion");
+            tb.Columns.Add("Monto");
+            tb.Columns.Add("Fecha");
 
-            //Array alumno = librosObtenidos.ToList();
-
-            foreach (var item in librosObtenidos)
+           
+            foreach (var item in pagosRealizados)
             {
-                LibroPendiente x = (LibroPendiente)item;
+                PagoPendiente pago = (PagoPendiente)item;
                 DataRow r = tb.NewRow();
-                r["Libro"] = x.ds_libro;
-                r["Autor"] = x.ds_autor;                
-                r["Fecha de Préstamo"] = x.dt_fecha_prestamo;
-                r["Fecha de Devolución"] = x.dt_fecha_devolucion;
+                r["Codigo"] = pago.cd_alumno;
+                r["Descripcion"] = pago.ds_pago;
+                r["Monto"] = pago.qt_monto;
+                r["Fecha"] = pago.dt_fecha;
                 tb.Rows.Add(r);
 
             }
             datos.DataSource = tb;
             datos.DataBind();
+
+        }
+
+        protected void datos_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

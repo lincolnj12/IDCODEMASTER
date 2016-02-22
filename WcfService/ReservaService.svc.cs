@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+
 using WcfService.Dominio;
 using WcfService.Persistencia;
 using System.Data;
@@ -106,6 +107,8 @@ namespace WcfService
         {
             return AlumnoDAO.Obtener(cd_alumno);
         }
+        
+        
 
         public Dominio.Padre ConsultarPadre(int cd_padre)
         {
@@ -238,14 +241,6 @@ namespace WcfService
 
 
 
-        // Johnny Rivera Barzola
-
-        public List<Observacion> ListarObservacion(int cd_alumno)
-        {
-            return ObservacionDAO.ListarObservaciones(cd_alumno).ToList();
-        }
-
-
         public Respuesta ListarPagos(string cd_alumno)
         {
             Respuesta resp;
@@ -272,7 +267,6 @@ namespace WcfService
 
 
         }
-
 
 
     }

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using ProyectoIDCode.WSMatricula;
+using ProyectoIDCode.WSAlumnos;
 
 
 namespace ProyectoIDCode
@@ -13,7 +13,9 @@ namespace ProyectoIDCode
     public partial class index : System.Web.UI.Page
     {
 
-        WSMatricula.ReservaServiceClient alu = new WSMatricula.ReservaServiceClient();
+        //WSMatricula.ReservaServiceClient alu = new WSMatricula.ReservaServiceClient();
+        WSAlumnos.AlumnosServiceClient alu = new WSAlumnos.AlumnosServiceClient();
+
 
         DataTable tb = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
@@ -22,7 +24,7 @@ namespace ProyectoIDCode
             {
                 cargaralumnos();
             }
-
+            
         }
 
         private void cargaralumnos()
@@ -34,7 +36,7 @@ namespace ProyectoIDCode
             tb.Columns.Add("cd_pago");
 
             Array alumno = alu.ListarAlumno("1");
-
+            
             foreach (var item in alumno)
             {
                 Alumno x = (Alumno)item;

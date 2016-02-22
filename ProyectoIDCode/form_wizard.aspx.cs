@@ -5,23 +5,30 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ProyectoIDCode.WSMatricula;
-using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using ProyectoIDCode.CLASES;
 using System.Web.Script.Serialization;
+using ProyectoIDCode.WSReservas;
+using ProyectoIDCode.WSNotas;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace ProyectoIDCode
 {
     public partial class form_wizard : System.Web.UI.Page
     {
 
-
         static string cod_alumno;
         static int notas = 0, bibli = 0, deud = 0;
         static string flag;
 
         WSMatricula.ReservaServiceClient ws = new WSMatricula.ReservaServiceClient();
+        WSReservas.ReservasServiceClient reserva = new WSReservas.ReservasServiceClient();
+        WSLibrosPrestados.LibrosPerstadosServiceClient libros = new WSLibrosPrestados.LibrosPerstadosServiceClient();
+        WSNotas.NotasServiceClient nota = new WSNotas.NotasServiceClient();
+        WSPagos.PagosServiceClient pagos = new WSPagos.PagosServiceClient();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -52,7 +59,7 @@ namespace ProyectoIDCode
         {
 
             pnl_mensajeFinal.Visible = true;
-            ReservaMatricula res = ws.registarReserva(cod_alumno);
+            ProyectoIDCode.WSReservas.ReservaMatricula res = reserva.registarReserva(cod_alumno);
 
             if (res.fg_estado.Equals('0'))
             {
@@ -93,7 +100,7 @@ namespace ProyectoIDCode
         protected void btnsitacademica_Click(object sender, EventArgs e)
         {
 
-            Respuesta resp = ws.ListarNotaAlumno(cod_alumno);
+            ProyectoIDCode.WSNotas.Respuesta resp = nota.ListarNotaAlumno(cod_alumno);
             lblmensaje.Text = resp.mensaje;
             notas = resp.flag;
             
@@ -103,7 +110,7 @@ namespace ProyectoIDCode
         protected void btndevolucion_Click(object sender, EventArgs e)
         {
 
-            Respuesta resp = ws.ListarLibrosPrestados(cod_alumno);
+            ProyectoIDCode.WSLibrosPrestados.Respuesta resp = libros.ListarLibrosPrestados(cod_alumno);
             lblmensaje.Text = resp.mensaje;
             bibli = resp.flag;
             des_biblio();
@@ -113,11 +120,71 @@ namespace ProyectoIDCode
 
         protected void btnestadoD_Click(object sender, EventArgs e)
         {
-            Respuesta resp = ws.ListarPagos(cod_alumno);
-            lblmensaje.Text = resp.mensaje;
-            deud = resp.flag;
-            des_deudas();
-            validar_fini();
+
+            try
+            {
+                ProyectoIDCode.WSPagos.Respuesta resp = pagos.ListarPagos(cod_alumno);
+                lblmensaje.Text = resp.mensaje;
+                deud = resp.flag;
+                des_deudas();
+                validar_fini();
+
+            }
+            catch (Exception ex)
+            {
+
+
+                AlumnoConsulta alumno = new AlumnoConsulta();
+                alumno.codigo_alumno=cod_alumno;
+
+                MQConexion conexionMQ = new MQConexion();
+                conexionMQ.ConnectMQ("IB9QMGR", "MBK.SESION3.ENTRADA", "SYSTEM.DEF.SVRCONN");
+                conexionMQ.WriteMsg(alumno.mensaje);
+
+                XmlDocument xml = new XmlDocument();
+                try
+                {
+                    xml.LoadXml(conexionMQ.ReadMsg());
+                }
+                catch (Exception bee)
+                {
+                    deud = 1;
+                    lblmensaje.Text = "El Alumno no presenta ninguna deuda pendiente.";
+                    des_deudas();
+                    validar_fini();
+                    return;
+                }
+
+
+                XmlSerializer serializer = new XmlSerializer(typeof(AlumnoConsultaRS));
+                AlumnoConsultaRS response = new AlumnoConsultaRS();
+                var nsmgr = new XmlNamespaceManager(xml.NameTable);
+                nsmgr.AddNamespace("io", "http://www.example.org/Alumno/");
+                XmlNodeList xnList = xml.SelectNodes("//io:AlumnoConsultaRS", nsmgr);
+                string des_pago = "";
+                foreach (XmlNode xn in xnList)
+                {
+                    des_pago = xn["des_pago"].InnerText;
+                    string des_estado = xn["des_estado"].InnerText;
+                    
+                }
+
+                if (des_pago == "")
+                {
+                    deud = 1;
+                    lblmensaje.Text = "El Alumno no presenta ninguna deuda pendiente.";
+                }
+                else
+                {
+                    deud = 0;
+                    lblmensaje.Text = "Usted tiene pagos pendientes por cancelar. Por favor, acérquese al área de secretaria.";
+                }
+
+                des_deudas();
+                validar_fini();
+
+            }
+            
         }
         public void validar_fini()
         {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://www.example.org/Alumno/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/Alumno/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element ibmSchExtn:docRoot="true" name="AlumnoConsulta">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="codigo_alumno" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="AlumnoConsultaRS">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="des_pago" type="xsd:string"/>
+          	<xsd:element name="des_estado" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>

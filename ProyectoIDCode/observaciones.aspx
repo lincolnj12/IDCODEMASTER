@@ -7,6 +7,9 @@
     <title></title>
 </head>
 <body>
+    <p>
+        <br />
+    </p>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -43,11 +46,9 @@
                             <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="form_wizard.aspx">Matrícula 2016</a></li>
-                                <li><a href="profile.html">Notas Académicas</a></li>
-                                <li class="active"><a href="projects.html">Actualizar Datos</a></li>
-                                <li><a href="project_detail.html">Datos Personales</a></li>
                                 <li><a href="librospendientes.aspx">Libros pendientes</a></li>
                                 <li><a href="pagos.aspx">Pagos y deudas</a></li>
+                                <li class="active"><a href="observaciones.aspx">Observaciones</a></li>
                             </ul>
                         </li>
 
@@ -227,7 +228,14 @@
 
 
                         <div class="col-lg-8">
-                            <div class="ibox float-e-margins">
+                            <asp:GridView ID="listaobs" runat="server" class="table table-hover" >
+                                
+
+                            </asp:GridView>
+                            <asp:Label ID="lblmensaje" runat="server" Text=""></asp:Label>
+
+
+                            <%--<div class="ibox float-e-margins">
 
                                 <div class="ibox-content">
                                     <div>
@@ -280,7 +288,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
+
                         </div>
                         <!--<div class="col-lg-5">
                     <div class="jumbotron">

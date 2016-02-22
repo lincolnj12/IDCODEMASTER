@@ -42,12 +42,11 @@
                         <li class="active">
                             <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                             <ul class="nav nav-second-level">
-                                <li class="active"><a href="form_wizard.aspx">Matrícula 2016</a></li>
-                                <li><a href="profile.html">Notas Académicas</a></li>
-                                <li><a href="projects.html">Horario Académico</a></li>
-                                <li><a href="project_detail.html">Datos Personales</a></li>
+                                <li class="active"><a href="form_wizard.aspx">Matrícula 2016</a></li>                                
                                 <li><a href="librospendientes.aspx">Libros pendientes</a></li>
-                                <li><a href="pagos.aspx">Pagos y deudas</a></li>
+                                <li><a href="pagospendientes.aspx">Pagos y deudas</a></li>
+                                <li class="active"><a href="cancelarMatricula.aspx">Cancelar Reserva</a></li>
+                                <li><a href="observaciones.aspx">Observaciones</a></li>
                             </ul>
                         </li>
 
@@ -197,108 +196,112 @@
                     <div class="col-lg-2">
                     </div>
                 </div>
-                <div class="wrapper wrapper-content animated fadeInRight">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <div class="jumbotron">
-                                <h1>Reserva</h1>
-                                <p>Para finalizar la reserva de matricula, usted deberá de pasar las siguientes restricciones.</p>
-                                <p>
-                                    <a href="#" class="btn btn-danger btn-lg" role="button" data-toggle="modal" data-target="#myModal4">Cancelar Matrícula</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content animated fadeIn">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <i class="fa fa-clock-o modal-icon"></i>
-                                        <h4 class="modal-title">Matrícula 2016 Cancelada</h4>
-                                        <small>Usted ha cancelado la Matricula del Alumno.</small>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Si el estudiante presenta solicitud de cancelación en la Dirección de Admisiones y Registro Académico y no tiene deudas, automáticamente  se  registra la so licitud   en el  sistema y se  archiva    la  solicitud  física  y  el  carné  hasta  que  el  estudiante solicite la readmisión.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="col-lg-7">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5>Proceso de reserva matrícula 2016</h5>
-                                    <div class="ibox-tools">
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-user">
-                                            <li><a href="#">Config option 1</a>
-                                            </li>
-                                            <li><a href="#">Config option 2</a>
-                                            </li>
-                                        </ul>
-                                        <a class="close-link">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="ibox-content">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="jumbotron">
+                                    <h1>Reserva</h1>
+                                    <p>Para iniciar el proceso de anulación de reserva de matrícula seleccione la siguiente opción.</p>
                                     <p>
-                                        Validar las siguientes restrciones
-                       
+                                        <asp:Button ID="btCancelar" runat="server" Text="Cancelar" class="btn btn-danger btn-lg" OnClick="btCancelar_Click" />
+                                        <%--<a href="#" class="btn btn-danger btn-lg" role="button" data-toggle="modal" data-target="#myModal4">Cancelar Matrícula</a>--%>
                                     </p>
-                                    <div id="wizard">
-                                        <h1>Situacion Académica</h1>
-                                        <div class="step-content">
-                                            <div class="text-center m-t-md">
-                                                <h2>Aprobado</h2>
-                                                <p>
-                                                    EL Alumno no debe nunguna materia académica.
-                               
-                                                </p>
+                                </div>
+                            </div>
+                            <asp:Panel runat="server" ID="pnl_mensajeFinal" Visible="false">
+                                <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content animated fadeIn">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <i class="fa fa-clock-o modal-icon"></i>
+                                                <h4 class="modal-title">Matrícula 2016 Cancelada</h4>
+                                                <small>Usted ha cancelado la Matricula del Alumno.</small>
                                             </div>
-                                        </div>
-
-                                        <h1>Devolución de libros</h1>
-                                        <div class="step-content">
-                                            <div class="text-center m-t-md">
-                                                <h2>Completo</h2>
-                                                <p>
-                                                    El alumno no presenta ningun prestamo de libro pendiente.
-                                   
-                                                </p>
+                                            <div class="modal-body">
+                                                <p>Si el estudiante presenta solicitud de cancelación en la Dirección de Admisiones y Registro Académico y no tiene deudas, automáticamente  se  registra la so licitud   en el  sistema y se  archiva    la  solicitud  física  y  el  carné  hasta  que  el  estudiante solicite la readmisión.</p>
                                             </div>
-                                        </div>
-
-                                        <h1>Estado de deudas</h1>
-                                        <div class="step-content">
-                                            <div class="text-center m-t-md">
-                                                <h2>Cancelado</h2>
-                                                <p>
-                                                    El alumno no presenta ninguna deuda pendiente.
-                                   
-                                                </p>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </asp:Panel>
 
-                </div>
+                            <!-- <div class="col-lg-7">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Proceso de reserva matrícula 2016</h5>
+                                        <div class="ibox-tools">
+                                            <a class="collapse-link">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-user">
+                                                <li><a href="#">Config option 1</a>
+                                                </li>
+                                                <li><a href="#">Config option 2</a>
+                                                </li>
+                                            </ul>
+                                            <a class="close-link">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <p>
+                                            Validar las siguientes restrciones
+                       
+                                        </p>
+                                        <div id="wizard">
+                                            <h1>Situacion Académica</h1>
+                                            <div class="step-content">
+                                                <div class="text-center m-t-md">
+                                                    <h2>Aprobado</h2>
+                                                    <p>
+                                                        EL Alumno no debe nunguna materia académica.
+                               
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <h1>Devolución de libros</h1>
+                                            <div class="step-content">
+                                                <div class="text-center m-t-md">
+                                                    <h2>Completo</h2>
+                                                    <p>
+                                                        El alumno no presenta ningun prestamo de libro pendiente.
+                                   
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <h1>Estado de deudas</h1>
+                                            <div class="step-content">
+                                                <div class="text-center m-t-md">
+                                                    <h2>Cancelado</h2>
+                                                    <p>
+                                                        El alumno no presenta ninguna deuda pendiente.
+                                   
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
                 <div class="footer">
                     <div class="pull-right">
                         10GB of <strong>250GB</strong> Free.

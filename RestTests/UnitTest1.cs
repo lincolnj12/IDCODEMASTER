@@ -71,5 +71,22 @@ namespace RestTests
             }
 
         }
+
+        [TestMethod]
+        public void ListarObservacionesAlumno()
+        {
+            HttpWebRequest req1 = (HttpWebRequest)WebRequest
+                .Create("http://localhost:4920/ObservacionService.svc/Observaciones/1");
+            req1.Method = "GET";
+            HttpWebResponse res1 = (HttpWebResponse)req1.GetResponse();
+            StreamReader reader1 = new StreamReader(res1.GetResponseStream());
+            string alumnosJson1 = reader1.ReadToEnd();
+            JavaScriptSerializer js1 = new JavaScriptSerializer();
+            List<Observacion> alumnosObtenidos = js1.Deserialize<List<Observacion>>(alumnosJson1);
+            Assert.AreEqual(1, alumnosObtenidos.Count);
+
+        }
+
+
     }
 }

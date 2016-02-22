@@ -10,7 +10,7 @@ namespace WcfService.Persistencia
         public static string ObtenerCadena()
         {
 
-            return "Data Source=DESKTOP-74PRT41\\SQLEXPRESS;Initial Catalog=BD_PROYECTO;Integrated Security=SSPI;";
+            return "Data Source=192.168.1.33;Initial Catalog=BD_PROYECTO;user=sa;password=123;";
             //return "Data Source=(local);Initial Catalog=BD_PROYECTO;Integrated Security=SSPI;";
 
         }

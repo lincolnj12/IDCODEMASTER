@@ -1,21 +1,20 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Web;
+using WcfService.Dominio;
 
-namespace WcfService.Dominio
+namespace ProyectoIDCode.CLASES
 {
-    [DataContract]
     public class Alumno
     {
-        [DataMember]
+
         public int cd_alumno { get; set; }
-        [DataMember]
         public Padre cd_padre { get; set; }
-        [DataMember]
         public string ds_nombre { get; set; }
-        [DataMember]
         public string ds_apellido { get; set; }
+
+
     }
 }

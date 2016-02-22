@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f93964bd-fb6d-4fe1-b969-b1d56e924ff8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4920/PagosService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PagosService.xsd" MetadataType="Schema" ID="05be2da6-4873-4872-a423-7f50ae3e2a1e" SourceId="1" SourceUrl="http://localhost:4920/PagosService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PagosService1.xsd" MetadataType="Schema" ID="4a65f078-66c2-4dc8-a415-8d6d4f7dc935" SourceId="1" SourceUrl="http://localhost:4920/PagosService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PagosService.disco" MetadataType="Disco" ID="0c84fe25-6e0d-4681-9a80-61427829b369" SourceId="1" SourceUrl="http://localhost:4920/PagosService.svc?disco" />
+    <MetadataFile FileName="PagosService.wsdl" MetadataType="Wsdl" ID="d3567ca2-130a-4b29-a215-80c0ca2d925b" SourceId="1" SourceUrl="http://localhost:4920/PagosService.svc?wsdl" />
+    <MetadataFile FileName="PagosService2.xsd" MetadataType="Schema" ID="28f5da03-619b-4a13-99f5-fdd99a0772c4" SourceId="1" SourceUrl="http://localhost:4920/PagosService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

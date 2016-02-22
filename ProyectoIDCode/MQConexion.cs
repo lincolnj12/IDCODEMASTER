@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using IBM.WMQ;
+using System.Collections;
 
 namespace ProyectoIDCode
 {
@@ -14,6 +15,7 @@ namespace ProyectoIDCode
         MQMessage queueMessage;
         MQPutMessageOptions queuePutMessageOptions;
         MQGetMessageOptions queueGetMessageOptions;
+
 
         static string QueueName;
         static string QueueManagerName;
@@ -26,22 +28,20 @@ namespace ProyectoIDCode
         public string ConnectMQ(string strQueueManagerName, string strQueueName,
         string strChannelInfo)
         {
-            //
+
             QueueManagerName = strQueueManagerName;
             QueueName = strQueueName;
             ChannelInfo = strChannelInfo;
-            //
-            char[] separator = { '/' };
-            string[] ChannelParams;
-            ChannelParams = ChannelInfo.Split(separator);
-            channelName = ChannelParams[0];
-            transportType = ChannelParams[1];
-            connectionName = ChannelParams[2];
+            Hashtable table = new Hashtable();
+
+            table.Add(MQC.HOST_NAME_PROPERTY, "192.168.1.37");
+            table.Add(MQC.PORT_PROPERTY, 2414);
+            table.Add(MQC.CHANNEL_PROPERTY, strChannelInfo);
+
             String strReturn = "";
             try
             {
-                queueManager = new MQQueueManager(QueueManagerName,
-                channelName, connectionName);
+                queueManager = new MQQueueManager(strQueueManagerName, table);
                 strReturn = "Connected Successfully";
             }
             catch (MQException exp)
@@ -52,56 +52,72 @@ namespace ProyectoIDCode
             return strReturn;
         }
         public string WriteMsg(string strInputMsg)
-    {
-         string strReturn = "";
-         try
-         {
-            queue = queueManager.AccessQueue( QueueName,
-            MQC.MQOO_OUTPUT + MQC.MQOO_FAIL_IF_QUIESCING );
-            message = strInputMsg;
-            queueMessage = new MQMessage();
-            queueMessage.WriteString( message );
-            queueMessage.Format = MQC.MQFMT_STRING;
-            queuePutMessageOptions = new MQPutMessageOptions();
-            queue.Put( queueMessage, queuePutMessageOptions );
-            strReturn = "Message sent to the queue successfully";
-         }
-        catch(MQException MQexp)
         {
-            strReturn = "Exception: " + MQexp.Message ;
-        }
-        catch(Exception exp)
-        {
-            strReturn = "Exception: " + exp.Message ;
-        }
-            return strReturn;
-        }
- 
-    public string ReadMsg()
-    {
-        String strReturn = "";
-        try
-        {
-            queue = queueManager.AccessQueue( QueueName,
-            MQC.MQOO_INPUT_AS_Q_DEF + MQC.MQOO_FAIL_IF_QUIESCING );
-            queueMessage = new MQMessage();
-            queueMessage.Format = MQC.MQFMT_STRING;
-            queueGetMessageOptions = new MQGetMessageOptions();
-            queue.Get( queueMessage, queueGetMessageOptions );
-            strReturn =
-            queueMessage.ReadString(queueMessage.MessageLength);
-         }
-        catch (MQException MQexp)
-         {
-             strReturn = "Exception : " + MQexp.Message ;
-        }
-        catch(Exception exp)
-        {
-            strReturn = "Exception: " + exp.Message ;
-        }
-            return strReturn;
-        }
-    }
+            string strReturn = "";
+            try
+            {
+                queue = queueManager.AccessQueue(QueueName,
+                    MQC.MQOO_OUTPUT + MQC.MQOO_FAIL_IF_QUIESCING);
 
+                message = strInputMsg;
+                queueMessage = new MQMessage();
+                queueMessage.WriteBytes(strInputMsg);
+                queueMessage.ReplyToQueueName = "MBK.SESION3.SALIDA";
+                queueMessage.OriginalLength = 120;
+                queueMessage.ReplyToQueueManagerName = "IB9QMGR";
+                queueMessage.DataOffset = 328;
+                queueMessage.Format = MQC.MQFMT_STRING;
+                queuePutMessageOptions = new MQPutMessageOptions();
+
+
+
+                try
+                {
+                    queue.Put(queueMessage, queuePutMessageOptions);
+                    strReturn = "Message sent to the queue successfully";
+                }
+                catch (MQException e)
+                {
+                    strReturn = "Exception: " + "error al colocar(put) el mensaje en la cola " + QueueName + ". " + e.ToString();
+                }
+
+            }
+            catch (MQException MQexp)
+            {
+                strReturn = "Exception: " + MQexp.Message;
+            }
+            catch (Exception exp)
+            {
+                strReturn = "Exception: " + exp.Message;
+            }
+            return strReturn;
+        }
+
+        public string ReadMsg()
+        {
+            String strReturn = "";
+            try
+            {
+
+                queue = queueManager.AccessQueue("MBK.SESION3.SALIDA",
+                MQC.MQOO_INPUT_AS_Q_DEF + MQC.MQOO_FAIL_IF_QUIESCING);
+                queueMessage = new MQMessage();
+                queueMessage.Format = MQC.MQFMT_STRING;
+                queueGetMessageOptions = new MQGetMessageOptions();
+                queue.Get(queueMessage, queueGetMessageOptions);
+                strReturn = queueMessage.ReadString(queueMessage.MessageLength);
+            }
+            catch (MQException MQexp)
+            {
+                strReturn = "Exception : " + MQexp.Message;
+            }
+            catch (Exception exp)
+            {
+                strReturn = "Exception: " + exp.Message;
+            }
+            return strReturn;
+        }
+
+    }
     
 }
