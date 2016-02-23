@@ -142,7 +142,7 @@ namespace WcfService.Persistencia
 
         // Johnny Rivera Barzola
 
-         public ICollection<Entidad> ListarObservaciones(int codigo)
+         public ICollection<Entidad> ListarObservaciones(string codigo)
          {
 
 

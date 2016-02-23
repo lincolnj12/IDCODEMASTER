@@ -19,7 +19,21 @@ namespace WcfService.Dominio
         public string ds_nombre { get; set; }
         [DataMember]
         public string ds_apellido { get; set; }
+
+        [DataMember]
+        public string ds_direccion { get; set; }
+        [DataMember]
+        public string ds_distrito { get; set; }
+        [DataMember]
+        public string ds_telefono { get; set; }
+        [DataMember]
+        public string ds_celular { get; set; }
+
+
         [DataMember]
         public int cd_pago { get; set; }
+
+   
+
     }
 }

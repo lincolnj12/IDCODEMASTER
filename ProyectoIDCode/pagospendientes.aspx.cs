@@ -17,21 +17,21 @@ namespace ProyectoIDCode
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            StreamReader reader1=null;
+            StreamReader reader1 = null;
             List<PagoPendiente> pagosRealizados = new List<PagoPendiente>();
             try
             {
-HttpWebRequest req1 = (HttpWebRequest)WebRequest
-    .Create("http://localhost:4920/PagosService.svc/PagosPendientes/" + Session["cod_alumno"]);
-            req1.Method = "GET";
-            HttpWebResponse res1 = null;
+                HttpWebRequest req1 = (HttpWebRequest)WebRequest
+                    .Create("http://localhost:4920/PagosServicesRest.svc/PagosPendientes/" + Session["cod_alumno"]);
+                req1.Method = "GET";
+                HttpWebResponse res1 = null;
 
-            res1 = (HttpWebResponse)req1.GetResponse();
+                res1 = (HttpWebResponse)req1.GetResponse();
 
-            reader1 = new StreamReader(res1.GetResponseStream());
-            string alumnosJson1 = reader1.ReadToEnd();
-            JavaScriptSerializer js1 = new JavaScriptSerializer();
-            pagosRealizados = js1.Deserialize<List<PagoPendiente>>(alumnosJson1);
+                reader1 = new StreamReader(res1.GetResponseStream());
+                string alumnosJson1 = reader1.ReadToEnd();
+                JavaScriptSerializer js1 = new JavaScriptSerializer();
+                pagosRealizados = js1.Deserialize<List<PagoPendiente>>(alumnosJson1);
             }
             catch (WebException be)
             {
@@ -42,10 +42,10 @@ HttpWebRequest req1 = (HttpWebRequest)WebRequest
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string message = js.Deserialize<string>(error);
 
-                lblmensaje.Text =message;
+                lblmensaje.Text = message;
             }
-            
-            
+
+
 
             DataTable tb = new DataTable();
             tb.Columns.Add("Codigo");
@@ -53,7 +53,7 @@ HttpWebRequest req1 = (HttpWebRequest)WebRequest
             tb.Columns.Add("Monto");
             tb.Columns.Add("Fecha");
 
-           
+
             foreach (var item in pagosRealizados)
             {
                 PagoPendiente pago = (PagoPendiente)item;

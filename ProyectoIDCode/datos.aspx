@@ -1,10 +1,68 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="datos.aspx.cs" Inherits="ProyectoIDCode.datos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="datos.aspx.cs" Inherits="ProyectoIDCode.datos" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #bloqueoPagina {
+            background: #000000;
+            width: 100%;
+            height: 1100px;
+            opacity: 0.7;
+            margin: 0px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            z-index: 1000;
+            margin: 0px;
+            padding: 0px; /* display: none;*/
+        }
+        #bloqueoPagina2 {
+            background: #000000;
+            width: 100%;
+            height: 1100px;
+            opacity: 0.7;
+            margin: 0px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            z-index: 1000;
+            margin: 0px;
+            padding: 0px; /* display: none;*/
+        }
+
+        #bloqueoPagina2 {
+            background: #000000;
+            width: 100%;
+            height: 1100px;
+            opacity: 0.7;
+            margin: 0px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            z-index: 1000;
+            margin: 0px;
+            padding: 0px; /* display: none;*/
+        }
+
+        #Mensaje {
+            z-index: 10001;
+            position: absolute;
+            margin: 150px 140px 0 200px;
+            background-color: #FFFFFF;
+            top: 99px;
+            left: 354px;
+        }
+
+            #Mensaje p {
+                color: #000;
+            }
+    </style>
 </head>
 <body>
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +72,38 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <form id="form1" runat="server">
+
+        <asp:Panel runat="server" ID="pnl_mensajeFinal" Visible="false">
+                    <div id="bloqueoPagina"></div>
+
+                    <div id="Mensaje" class="ibox-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <i class="fa fa-clock-o modal-icon"></i>                         
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td><asp:Label ID="LBLM" runat="server" Text="Por favor seleccionar un alumno" ></asp:Label> </td>
+                                 
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Button runat="server" ID="btn_aceptar" Text="Aceptar" OnClick="btn_aceptar_Click" class="btn btn-primary btn-sm"></asp:Button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </asp:Panel>
+
+                <asp:Panel runat="server" ID="Panel1" Visible="false">
+                    <div id="bloqueoPagina2"></div>
+                    <div id="Mensaje2" class="ibox-content">
+                    </div>
+                </asp:Panel>
+
         <div id="wrapper">
 
             <nav class="navbar-default navbar-static-side" role="navigation">
@@ -42,12 +132,12 @@
                         <li class="active">
                             <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="form_wizard.aspx">Matrícula 2016</a></li>
-                                <li><a href="profile.html">Notas Académicas</a></li>
-                                <li class="active"><a href="projects.html">Actualizar Datos</a></li>
-                                <li><a href="project_detail.html">Datos Personales</a></li>
+                                <li><a href="form_wizard.aspx">Matrícula 2016</a></li>            
                                 <li><a href="librospendientes.aspx">Libros pendientes</a></li>
-                                <li><a href="pagos.aspx">Pagos y deudas</a></li>
+                                <li><a href="pagospendientes.aspx">Pagos y deudas</a></li>
+                                <li><a href="cancelarMatricula.aspx">Cancelar Reserva</a></li>
+                                <li><a href="observaciones.aspx">Observaciones</a></li>
+                                <li class="active"><a href="datos.aspx">Actualizar datos</a></li>
                             </ul>
                         </li>
 
@@ -204,13 +294,14 @@
                         <div class="col-lg-4">
                             <div class="widget-head-color-box navy-bg p-lg text-center">
                                 <div class="m-b-md">
-                                    <h2 class="font-bold no-margins">Alex Smith
+                                    <h2 class="font-bold no-margins">
                         </h2>
                                     <small>1° de Primaria</small>
                                 </div>
-                                <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                                <%--<img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">--%>
+                                <asp:Image ID="Image2" runat="server" Width="140" Height="140"  />
                                 <div>
-                                    <span>Pomedio Global: 17</span>
+                                    <span></span>
                                 </div>
                             </div>
                             <div class="widget-text-box">
@@ -248,67 +339,57 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="ibox-content">
+                                <div class="ibox-content" style="height:400px">
                                     <form method="get" class="form-horizontal">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Nombres</label>
                                             <div class="col-sm-10">
-                                                <input disabled="" name="nombres" type="text" class="form-control"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Paterno</label>
-                                            <div class="col-sm-10">
-                                                <input disabled="" name="paterno" type="text" class="form-control"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Materno</label>
-                                            <div class="col-sm-10">
-                                                <input disabled="" name="materno" type="text" class="form-control"></div>
-                                        </div>
-
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">DNI</label>
-                                            <div class="col-sm-10">
-                                                <input name="dni" type="text" class="form-control">
-                                                <span class="help-block m-b-none">Ingrese el número de Documento de Identidad Nacional.</span>
+                                                <asp:TextBox ID="nombre" runat="server" readonly="true" class="form-control" ></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Ciudad</label>
-                                            <div class="col-sm-10">
-                                                <input placeholder="Residencia" name="ciudad" type="text" class="form-control"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Distrito</label>
-                                            <div class="col-sm-10">
-                                                <input placeholder="Residencia" name="distrito" type="text" class="form-control"></div>
+                                            <label class="col-sm-2 control-label">Apellidos</label>
+                                            <div class="col-sm-10">                                                
+                                                <asp:TextBox ID="apellido" runat="server" readonly="true" class="form-control"></asp:TextBox>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Dirección</label>
                                             <div class="col-sm-10">
-                                                <input placeholder="Residencia" name="direccion" type="text" class="form-control"></div>
+                                                <asp:TextBox ID="direccion" runat="server" class="form-control"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Distrito</label>
+                                            <div class="col-sm-10">
+                                                <asp:TextBox ID="distrito" runat="server" class="form-control"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Telefono</label>
+                                            <div class="col-sm-10">
+                                               <asp:TextBox ID="telefono" runat="server" class="form-control"></asp:TextBox>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Teléfonos</label>
+                                            <label class="col-sm-2 control-label">Celular</label>
                                             <div class="col-sm-10">
-                                                <input name="fono" type="text" class="form-control"></div>
+                                                <asp:TextBox ID="celular" runat="server" class="form-control"></asp:TextBox>
+                                            </div>
                                         </div>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Fecha de Nacimiento</label>
-                                            <div class="col-sm-10">
-                                                <input disabled="" name="materno" type="text" class="form-control"></div>
-                                        </div>
+
+
                                         <div class="hr-line-dashed"></div>
 
 
                                         <div class="form-group">
                                             <div class="col-sm-4 col-sm-offset-2">
-                                                <button class="btn btn-white" type="submit">Cancelar</button>
-                                                <button class="btn btn-primary" type="submit">Grabar</button>
+                                                <asp:Button ID="grabar" runat="server" Text="Grabar" class="btn btn-primary" OnClick="grabar_Click" />
                                             </div>
+
                                         </div>
                                     </form>
                                 </div>

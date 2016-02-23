@@ -18,5 +18,7 @@ namespace WcfService
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "LibrosPendientes/{codAlumno}", ResponseFormat = WebMessageFormat.Json)]
         List<LibroPendiente> ListarLibrosPendientesAlumno(string codAlumno);
+
+        
     }
 }

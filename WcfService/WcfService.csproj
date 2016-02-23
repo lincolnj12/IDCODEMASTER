@@ -70,16 +70,33 @@
     <EmbeddedResource Include="Dominio\LibroPendiente.hbm.xml" />
     <EmbeddedResource Include="Dominio\ReservaMatricula.hbm.xml" />
     <EmbeddedResource Include="Dominio\Observacion.hbm.xml" />
-    <EmbeddedResource Include="Dominio\Alumno.hbm.xml" />
+    <EmbeddedResource Include="Dominio\Alumno.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Libro.hbm.xml" />
     <EmbeddedResource Include="Dominio\Notas.hbm.xml" />
     <EmbeddedResource Include="Dominio\Pago.hbm.xml" />
+    <Content Include="ActualizarDatos.svc" />
+    <Content Include="AlumnosService.svc" />
+    <Content Include="LibrosPerstadosService.svc" />
+    <Content Include="ObservacionService.svc" />
     <Content Include="LibrosService.svc" />
+    <Content Include="NotasService.svc" />
+    <Content Include="PagosService.svc" />
+    <Content Include="PagosServicesRest.svc" />
     <Content Include="ReservaService.svc" />
+    <Content Include="ReservasService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarDatos.svc.cs">
+      <DependentUpon>ActualizarDatos.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnosService.svc.cs">
+      <DependentUpon>AlumnosService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Alumno.cs" />
+    <Compile Include="Dominio\BaseException.cs" />
     <Compile Include="Dominio\Libro.cs" />
     <Compile Include="Dominio\LibroPendiente.cs" />
     <Compile Include="Dominio\Nota.cs" />
@@ -87,11 +104,35 @@
     <Compile Include="Dominio\Observacion.cs" />
     <Compile Include="Dominio\Padre.cs" />
     <Compile Include="Dominio\Pago.cs" />
+    <Compile Include="Dominio\ReservaInexistenteException.cs" />
     <Compile Include="Dominio\ReservaMatricula.cs" />
     <Compile Include="Dominio\Respuesta.cs" />
+    <Compile Include="IActualizarDatos.cs" />
+    <Compile Include="IAlumnosService.cs" />
+    <Compile Include="ILibrosPerstadosService.cs" />
     <Compile Include="ILibrosService.cs" />
+    <Compile Include="INotasService.cs" />
+    <Compile Include="IObservacion.cs" />
+    <Compile Include="IPagosService.cs" />
+    <Compile Include="IPagosServicesRest.cs" />
+    <Compile Include="IReservasService.cs" />
+    <Compile Include="LibrosPerstadosService.svc.cs">
+      <DependentUpon>LibrosPerstadosService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ObservacionService.svc.cs">
+      <DependentUpon>ObservacionService.svc</DependentUpon>
+    </Compile>
     <Compile Include="LibrosService.svc.cs">
       <DependentUpon>LibrosService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="NotasService.svc.cs">
+      <DependentUpon>NotasService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="PagosService.svc.cs">
+      <DependentUpon>PagosService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="PagosServicesRest.svc.cs">
+      <DependentUpon>PagosServicesRest.svc</DependentUpon>
     </Compile>
     <Compile Include="Persistencia\AlumnoDAO.cs" />
     <Compile Include="Persistencia\BaseDAO.cs" />
@@ -109,6 +150,9 @@
     </Compile>
     <Compile Include="IReservaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservasService.svc.cs">
+      <DependentUpon>ReservasService.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

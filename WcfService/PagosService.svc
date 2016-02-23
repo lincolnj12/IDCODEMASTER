@@ -2,6 +2,6 @@
      Debug="true" 
     Service="WcfService.PagosService" 
     CodeBehind="PagosService.svc.cs" 
-    Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>
+    %>
 
 

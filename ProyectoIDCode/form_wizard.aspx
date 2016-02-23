@@ -157,12 +157,12 @@
                         <li class="active">
                             <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
                             <ul class="nav nav-second-level">
-                                <li class="active"><a href="form_wizard.aspx">Matrícula 2016</a></li>
-                                <li><a href="#">Notas Académicas</a></li>
-                                <li><a href="#">Horario Académico</a></li>
-                                <li><a href="#">Datos Personales</a></li>
+                                <li class="active"><a href="form_wizard.aspx">Matrícula 2016</a></li>    
                                 <li><a href="librospendientes.aspx">Libros pendientes</a></li>
-                                <li><a href="pagos.aspx">Pagos y deudas</a></li>
+                                <li><a href="pagospendientes.aspx">Pagos y deudas</a></li>
+                                <li><a href="cancelarMatricula.aspx">Cancelar Reserva</a></li>
+								<li><a href="observaciones.aspx">Observaciones</a></li>
+                                <li><a href="datos.aspx">Actualizar datos</a></li>
                             </ul>
                         </li>
 

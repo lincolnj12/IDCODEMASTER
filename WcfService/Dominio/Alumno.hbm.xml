@@ -7,9 +7,18 @@
     <id name="cd_alumno" column="cd_alumno">
       <generator class="increment" />
     </id>
+    <property name="ds_identificador_alumno" column="ds_identificador_alumno" />
     <property name="ds_nombre" column="ds_nombre" />
     <property name="ds_apellido" column="ds_apellido" />
     <property name="cd_padre" column="cd_padre" />
+
+    <property name="ds_direccion" column="ds_direccion" />
+    <property name="ds_distrito" column="ds_distrito" />
+    <property name="ds_telefono" column="ds_telefono" />
+    <property name="ds_celular" column="ds_celular" />
+  
+
+
     <property name="cd_pago" column="cd_pago" />
   </class>
 </hibernate-mapping>

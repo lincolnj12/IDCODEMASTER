@@ -20,6 +20,8 @@ namespace WcfService
 
         [OperationContract]
         Alumno ConsultarAlumno(int cd_alumno);
+        
+        
 
         [OperationContract]
         Padre ConsultarPadre(int cd_padre);
@@ -49,8 +51,7 @@ namespace WcfService
         [OperationContract]
         Respuesta ListarPagos(string cd_alumno);
 
-        [OperationContract]
-        List<Observacion> ListarObservacion(int cd_alumno);
+        
     }
 
 
